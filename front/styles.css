@@ -1,0 +1,120 @@
+/* Fondo de pantalla completo */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #2e241d; /* Estilo marrón oscuro como WhatsApp web */
+  font-family: "Segoe UI", sans-serif;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Contenedor del chat ocupa 90% de alto y ancho */
+.chat-container {
+  width: 95%;              /* Antes: 90% o max-width fijo */
+  height: 90%;
+  max-width: none;         /* Elimina límite de ancho */
+  margin: auto;
+  background-color: #111;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+  overflow: hidden;
+}
+
+/* Header superior */
+.chat-header {
+  background-color: #004d40;
+  color: white;
+  text-align: center;
+  padding: 14px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* Caja de mensajes */
+.chat-box {
+  flex: 1;
+  padding: 20px;
+  background-color: #222;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Burbuja base */
+.message {
+  max-width: 75%;
+  padding: 10px 14px;
+  border-radius: 20px;
+  line-height: 1.4;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-size: 16px;
+}
+
+/* Usuario (verde tipo WhatsApp) */
+.user {
+  align-self: flex-end;
+  background-color: #4caf50;
+  color: white;
+  border-bottom-right-radius: 0;
+}
+
+/* Bot (gris oscuro) */
+.bot {
+  align-self: flex-start;
+  background-color: #000;
+  color: white;
+  border-bottom-left-radius: 0;
+}
+
+/* Input + botón */
+.chat-input {
+  display: flex;
+  padding: 12px;
+  background-color: #004d40;
+  border-top: 1px solid #222;
+}
+
+.chat-input input {
+  flex: 1;
+  border: none;
+  border-radius: 25px;
+  padding: 12px 20px;
+  font-size: 16px;
+  outline: none;
+}
+
+.chat-input button {
+  background-color: #00796b;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 12px 20px;
+  margin-left: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.2s ease;
+}
+
+.chat-input button:hover {
+  background-color: #009688;
+}
+
+/* Código Markdown */
+pre {
+  background: #1e1e1e;
+  color: #f8f8f2;
+  padding: 12px;
+  border-radius: 10px;
+  overflow-x: auto;
+  font-size: 15px;
+}
+
+code {
+  font-family: "Fira Code", monospace;
+}
