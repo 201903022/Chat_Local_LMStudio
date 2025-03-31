@@ -1,131 +1,105 @@
-# 🟢 Manual del Proyecto "Chatsito" con DeepSeek R1 + LM Studio
+# Manual del Proyecto: Chatsito
 
-Este proyecto implementa una interfaz estilo WhatsApp que permite interactuar con el modelo de lenguaje **DeepSeek R1 (distill-llama-8b)** corriendo localmente a través de **LM Studio**, utilizando un backend en **Flask** y frontend en HTML/CSS/JS.
+Este proyecto simula un sistema de chat estilo WhatsApp entre el usuario y un modelo de lenguaje local (LLM) usando **DeepSeek R1** cargado desde **LM Studio**. Se comunica con un backend en Python usando Flask y una interfaz frontend responsiva en HTML, CSS y JavaScript.
+
+---
+
+## ✅ Tecnologías Utilizadas
+
+| Componente | Tecnología |
+|------------|-------------|
+| Modelo LLM | DeepSeek R1 (vía LM Studio) |
+| Backend    | Python + Flask |
+| Frontend   | HTML, CSS, JavaScript |
+| Markdown y Código | marked.js + highlight.js |
 
 ---
 
 ## 📁 Estructura del Proyecto
 
 ```
-CHATSITO/
-├── back/                 ← Backend en Python (Flask + LM Studio)
-│   ├── app.py           ← Servidor Flask
-│   ├── venv/            ← Entorno virtual Python
-│   └── requirements.txt
-│
-├── front/                ← Interfaz estilo WhatsApp
-│   ├── index.html       ← HTML principal
-│   ├── styles.css       ← Estilo del chat
-│   └── script.js         ← Lógica JS para enviar mensajes
+Chatsito/
+├── back/                 # Backend Flask + venv
+│   └── app.py           # API que se comunica con LM Studio
+├── front/                # Interfaz web tipo WhatsApp
+│   ├── index.html       # Estructura HTML
+│   ├── styles.css       # Estilos personalizados
+│   └── script.js        # Lógica JS + animaciones
+└── README.md             # Este manual
 ```
 
 ---
 
-## 🔧 Requisitos
+## 🚀 Configuración y Ejecución
 
-- Python 3.10+
-- [LM Studio](https://lmstudio.ai) instalado con modelo `deepseek-r1-distill-llama-8b`
-- Flask y dependencias (ver instalación)
+### 1. Requisitos previos
+- Tener Python 3.10+
+- Tener instalado LM Studio con un modelo cargado (ej. `deepseek-r1-distill-llama-8b`)
+- LM Studio debe estar corriendo en `http://localhost:1234`
 
----
+### 2. Requisitos mínimos del sistema para DeepSeek R1 (local)
 
-## ⚙️ Instalación del Backend (carpeta `back/`)
+| Componente      | Recomendado                    |
+|------------------|-------------------------------|
+| CPU              | Intel i5 o superior (6 núcleos) |
+| RAM              | **16 GB mínimo**               |
+| GPU (opcional)   | **NVIDIA RTX 3060 o mejor** (12 GB VRAM) |
+| Almacenamiento   | 8-10 GB disponibles para el modelo |
+| SO               | Windows, macOS o Linux         |
 
+> También puede funcionar en CPU, pero será más lento.
+
+### 3. Configurar entorno virtual en `back/`
 ```bash
 cd back
 python -m venv venv
-venv\Scripts\activate  # En Windows
-pip install flask flask-cors openai
-pip freeze > requirements.txt
+venv\Scripts\activate      # en Windows
+pip install flask flask-cors requests
 ```
 
----
-
-## 🚀 Ejecutar el Servidor
-
-1. Abre LM Studio y carga el modelo `deepseek-r1-distill-llama-8b`.
-2. Asegúrate de que el servidor esté activo en `http://localhost:1234`.
-3. Desde la carpeta `back/`, ejecuta:
-
+### 4. Ejecutar backend
 ```bash
 python app.py
+# Corre en http://localhost:5000
 ```
 
-> El backend estará escuchando en `http://localhost:5000/chat`
+### 5. Abrir frontend
+Solo abre `front/index.html` con tu navegador (doble clic o VS Code Live Server).
 
 ---
 
-## 🖼 Interfaz de Usuario (carpeta `front/`)
-
-Abre `index.html` en tu navegador. La interfaz permite:
-- Escribir mensajes al estilo WhatsApp
-- Enviar mensajes al backend
-- Recibir respuestas del modelo
+## 🤖 Comportamiento del Chat
+- Muestra el mensaje del usuario
+- Luego simula "DeepSeek está escribiendo..." con animación
+- Renderiza la respuesta con Markdown y resaltado de código
 
 ---
 
-## 🔁 Funcionamiento Interno
+## 📊 Características Especiales
 
-1. JS capta el mensaje del usuario y hace `POST` a `http://localhost:5000/chat`
-2. Flask recibe el mensaje, lo agrega al historial y consulta a LM Studio (vía API OpenAI-compatible).
-3. El modelo responde y el backend filtra bloques `<think>...</think>`
-4. El frontend muestra la respuesta tipo burbuja de chat
+### 🌟 Formateo enriquecido
+- Se usa `marked.js` para convertir Markdown en HTML
+- Se usa `highlight.js` para mostrar código colorido (Python, JS, etc.)
 
----
-
-## 🧠 Personalización del Asistente
-
-Puedes modificar el `system prompt` en `app.py`:
-```python
-messages = [{
-    "role": "system",
-    "content": (
-        "Eres un asistente que responde en español, sin mostrar razonamientos internos ni usar etiquetas <think>."
-    )
-}]
-```
+### ⏳ Indicador de escritura
+- Se muestra un texto animado tipo WhatsApp: `DeepSeek está escribiendo...`
+- Al llegar la respuesta real, se reemplaza por el mensaje
 
 ---
 
-## 🧽 Mejoras Posibles
-
-- Guardar historial en un archivo `.txt`
-- Implementar reinicio de conversación desde el frontend
-- Agregar soporte para markdown o código con resaltado
-- Convertir en app de escritorio (Tkinter o Electron)
+## 🎓 Aprendizajes y extensiones posibles
+- Se pueden agregar respuestas por voz (TTS)
+- O guardar el historial del chat en localStorage o SQLite
+- Puedes cambiar el modelo usado en LM Studio
 
 ---
 
-## 🧪 Ejemplo de mensaje
+## 👍 Crédito
 
-Usuario:
-```
-como hacer un hola mundo en python?
-```
-Respuesta:
-```
-Claro, aquí tienes:
-```python
-print("Hola Mundo")
-```
-```
+Desarrollado por: **Jonathan Alexander Sánchez Barrios**  
+IA Local: **DeepSeek R1 con LM Studio**  
+Frontend inspirado en **WhatsApp Web**
 
 ---
 
-## 🔐 100% Offline
-
-Este proyecto es **100% local y privado**:
-- El modelo corre offline en tu PC
-- Flask y JS solo usan `localhost`
-- No se envía información a internet
-
----
-
-## 📄 Licencia
-
-Uso personal o educativo. Puedes modificarlo libremente.
-
----
-
-_Desarrollado por: Jonathan A. Sanchez y DeepSeek + Flask + HTML/CSS/JS_
-
+© 2025 - Proyecto educativo y experimental con LLMs locales.
