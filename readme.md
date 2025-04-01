@@ -92,6 +92,11 @@ Solo abre `front/index.html` con tu navegador (doble clic o VS Code Live Server)
 - O guardar el historial del chat en localStorage o SQLite
 - Puedes cambiar el modelo usado en LM Studio
 
+
+## Video de Funcionamiento: 
+```
+https://drive.google.com/file/d/15dotvmWFf-MVnenTHvCo6JOD_CT6DfUM/view?usp=sharing
+```
 ---
 
 ## 👍 Crédito
